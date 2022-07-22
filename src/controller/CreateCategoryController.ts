@@ -1,19 +1,22 @@
 import { Request, Response } from "express";
-import { CreateCategoryService } from "../services/CreateCategoryService";
-
-
+import { CreateCategoryService } from "../services/CreateCategoryService"
 export class CreateCategoryController {
-    async handle(request: Request, response: Response) {
+    async create(request: Request, response: Response) {
         const { name,  description } = request.body;
 
-        const service = new CreateCategoryService();
-
-        const result = await service.execute({name, description})
-
-        if (result instanceof Error) {
-            return response.status(400).json(result.message);
+        if(!name) {
+            return response.status(400).json({ message: "O nome é obrigatório" });
         }
 
-        return response.json(result);
+        try{
+            const newCategory = CreateCategoryService.create({name, description})
+
+            await CreateCategoryService.save(newCategory)
+
+            return response.status(201).json(newCategory)
+        } catch (error) {
+            console.log(error)
+            return response.status(500).json({ message: "Internal Server Error" })
+        }
     }
 }

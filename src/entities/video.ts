@@ -1,17 +1,18 @@
-import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, ManyToOne, JoinColumn,  } from "typeorm";
+import { Entity, Column, CreateDateColumn, ManyToOne, JoinColumn, PrimaryColumn,  } from "typeorm";
 import { v4 as uuid } from "uuid"
 import { Category } from "./Category";
 
 @Entity("Videos")
 export class Video {
     
-    @PrimaryGeneratedColumn()
+    @PrimaryColumn()
     id: string;
 
     @Column()
     name:string;
 
     @Column()
+    
     description: string;
 
     @Column()
