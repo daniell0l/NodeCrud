@@ -2,7 +2,7 @@ import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn,  } from "type
 import { v4 as uuid } from "uuid"
 
 @Entity("categories")
-export default class Category {
+export class Category {
     
     @PrimaryGeneratedColumn()
     id: string;

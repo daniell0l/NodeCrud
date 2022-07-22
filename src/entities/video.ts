@@ -1,9 +1,9 @@
 import { Entity, Column, CreateDateColumn, PrimaryGeneratedColumn, ManyToOne, JoinColumn,  } from "typeorm";
 import { v4 as uuid } from "uuid"
-import Category from "./Category";
+import { Category } from "./Category";
 
 @Entity("Videos")
-export default class Video {
+export class Video {
     
     @PrimaryGeneratedColumn()
     id: string;

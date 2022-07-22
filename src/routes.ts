@@ -1,9 +1,9 @@
-import { Request, Response, Router } from 'express'
+import { Router } from 'express'
+import { CreateCategoryController } from './controller/CreateCategoryController'
 
 const routes = Router()
 
-routes.get('/', (request: Request, response: Response) => {
-    return response.json({ message: 'Hello World!' })
-})
+routes.post("/categories", new CreateCategoryController().handle)
 
-export default routes
+
+export { routes }
