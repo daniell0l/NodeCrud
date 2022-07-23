@@ -4,9 +4,9 @@ import { Category } from "../entities/Category";
 
     export class GetAllCategoriesService {
         async execute() {
-            const CreateCategoryService = AppDataSource.getRepository(Category);
+            const repo = AppDataSource.getRepository(Category);
 
-            const categories = await CreateCategoryService.find()
+            const categories = await repo.find()
 
             return categories;
 

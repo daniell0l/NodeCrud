@@ -1,12 +1,11 @@
 import { Request, Response } from "express";
 import { GetAllCategoriesService } from "../services/GetAllCategoriesService";
 
-
 export class GetAllCategoriesController {
-    async create(request: Request, response: Response) {
-        const newCategory = new GetAllCategoriesService()
+    async handle(request: Request, response: Response) {
+        const service = new GetAllCategoriesService()
 
-        const categories = await newCategory.execute()
+        const categories = await service.execute()
 
         return response.json(categories)
     }

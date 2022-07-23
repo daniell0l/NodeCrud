@@ -1,15 +1,15 @@
 import { AppDataSource } from "../data-source";
 import { Category } from "../entities/Category";
 
-
 export class DeleteCategoryService {
     async execute(id: string) {
-        const CreateCategoryService = AppDataSource.getRepository(Category);
- 
-        if (!(await CreateCategoryService.findOneBy({id}))) {
-            return new Error("Category does net exists!");
+        const repo = AppDataSource.getRepository(Category);
+
+        if(!(await repo.findOneBy({id}))) {
+            return new Error("Category does not exists")
+
         }
 
-        await CreateCategoryService.delete(id)
+        await repo.delete(id)
     }
 }
