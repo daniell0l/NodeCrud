@@ -1,4 +1,5 @@
-import { Entity, Column, CreateDateColumn, ManyToOne, JoinColumn, PrimaryColumn,  } from "typeorm";
+import { Entity, Column, CreateDateColumn, ManyToOne, JoinColumn, PrimaryColumn  } from "typeorm";
+import { NullLiteral } from "typescript";
 import { v4 as uuid } from "uuid"
 import { Category } from "./Category";
 
@@ -9,14 +10,13 @@ export class Video {
     id: string;
 
     @Column()
-    name:string;
+    name: string;
 
     @Column()
-    
     description: string;
 
     @Column()
-    duration: number;
+    duration: number | null;
 
     @Column()
     category_id: string;

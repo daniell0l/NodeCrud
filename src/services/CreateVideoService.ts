@@ -14,18 +14,22 @@ import { Video } from "../entities/video";
         name,
         description,
         duration,
-        category_id,
-    }: VideoRequest):Promise<Error | Video> {
-        const repo = AppDataSource.getRepository(Video);
+        category_id}: VideoRequest):Promise<Error | Video> {
+        const repo  = AppDataSource.getRepository(Video);
         const repoCategory = AppDataSource.getRepository(Category);
 
-        if (!(await repoCategory.findOneBy({category_id}))) {
+          if (!(await repoCategory.extend({category_id}))) {
             return new Error("Category does not exists!");
-        }
+        }        
 
-        const video =repo.create({ name, description, duration, category_id });
+        const video = repo.create({
+          name,
+          description,
+          duration,
+          category_id 
+        });
 
-        await repo.save(video);
+        await repo.save(video)
 
         return video;
     }
